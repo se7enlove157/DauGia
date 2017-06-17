@@ -242,6 +242,69 @@
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\css\easy-responsive-tabs.css" />
+    <Content Include="Content\css\global.css" />
+    <Content Include="Content\css\slider.css" />
+    <Content Include="Content\css\style.css" />
+    <Content Include="Content\images\about_img.jpg" />
+    <Content Include="Content\images\arrow-next.png" />
+    <Content Include="Content\images\arrow-prev.png" />
+    <Content Include="Content\images\arrow_up.png" />
+    <Content Include="Content\images\compare.png" />
+    <Content Include="Content\images\delivery-img1.jpg" />
+    <Content Include="Content\images\delivery-img2.jpg" />
+    <Content Include="Content\images\delivery-img3.jpg" />
+    <Content Include="Content\images\dribbble.png" />
+    <Content Include="Content\images\drop_arrow-hover.png" />
+    <Content Include="Content\images\drop_arrow.png" />
+    <Content Include="Content\images\facebook.png" />
+    <Content Include="Content\images\feature-pic1.jpg" />
+    <Content Include="Content\images\feature-pic2.jpg" />
+    <Content Include="Content\images\feature-pic3.jpg" />
+    <Content Include="Content\images\feature-pic4.jpg" />
+    <Content Include="Content\images\linkedin.png" />
+    <Content Include="Content\images\list-img.png" />
+    <Content Include="Content\images\logo.png" />
+    <Content Include="Content\images\new-pic1.jpg" />
+    <Content Include="Content\images\new-pic2.jpg" />
+    <Content Include="Content\images\new-pic3.jpg" />
+    <Content Include="Content\images\new-pic4.jpg" />
+    <Content Include="Content\images\newsimg1.jpg" />
+    <Content Include="Content\images\newsimg2.jpg" />
+    <Content Include="Content\images\newsimg3.jpg" />
+    <Content Include="Content\images\preview.jpg" />
+    <Content Include="Content\images\price-rating.png" />
+    <Content Include="Content\images\productslide-1.jpg" />
+    <Content Include="Content\images\productslide-2.jpg" />
+    <Content Include="Content\images\productslide-3.jpg" />
+    <Content Include="Content\images\productslide-4.jpg" />
+    <Content Include="Content\images\productslide-5.jpg" />
+    <Content Include="Content\images\productslide-6.jpg" />
+    <Content Include="Content\images\quality-rating.png" />
+    <Content Include="Content\images\search.png" />
+    <Content Include="Content\images\skype.png" />
+    <Content Include="Content\images\slide-1-image.png" />
+    <Content Include="Content\images\slide-2-image.jpg" />
+    <Content Include="Content\images\slide-3-image.jpg" />
+    <Content Include="Content\images\tag.png" />
+    <Content Include="Content\images\thumbnailslide-1.jpg" />
+    <Content Include="Content\images\thumbnailslide-2.jpg" />
+    <Content Include="Content\images\thumbnailslide-3.jpg" />
+    <Content Include="Content\images\thumbnailslide-4.jpg" />
+    <Content Include="Content\images\thumbnailslide-5.jpg" />
+    <Content Include="Content\images\thumbnailslide-6.jpg" />
+    <Content Include="Content\images\twitter.png" />
+    <Content Include="Content\images\value-rating.png" />
+    <Content Include="Content\images\wishlist.png" />
+    <Content Include="Content\js\easing.js" />
+    <Content Include="Content\js\easyResponsiveTabs.js" />
+    <Content Include="Content\js\jquery-1.7.2.min.js" />
+    <Content Include="Content\js\jquery.accordion.js" />
+    <Content Include="Content\js\jquery.easing.js" />
+    <Content Include="Content\js\move-top.js" />
+    <Content Include="Content\js\script.js" />
+    <Content Include="Content\js\slides.min.jquery.js" />
+    <Content Include="Content\js\startstop-slider.js" />
     <Content Include="Data\DauGia.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>DauGia.edmx</DependentUpon>
@@ -270,6 +333,7 @@
     <Content Include="Data\DauGia.edmx.diagram">
       <DependentUpon>DauGia.edmx</DependentUpon>
     </Content>
+    <Content Include="Content\font\Amble-Regular-webfont.ttf" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
