@@ -14,9 +14,14 @@ namespace DauGia.Data
     
     public partial class Product
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Product()
+        {
+            this.ProductImages = new HashSet<ProductImage>();
+        }
+    
         public int Id { get; set; }
         public string Name { get; set; }
-        public string Img { get; set; }
         public byte Type { get; set; }
         public int Quantity { get; set; }
         public System.DateTime TimeUpdate { get; set; }
@@ -28,5 +33,7 @@ namespace DauGia.Data
         public virtual ProductType ProductType { get; set; }
         public virtual User User { get; set; }
         public virtual ProductDetail ProductDetail { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<ProductImage> ProductImages { get; set; }
     }
 }

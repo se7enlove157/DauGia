@@ -6,7 +6,7 @@ using System.Web.Mvc;
 
 namespace DauGia.Controllers
 {
-    public class ManagerController : Controller
+    public class ManagerController : BaseController
     {
         // GET: Manager
         public ActionResult Index()

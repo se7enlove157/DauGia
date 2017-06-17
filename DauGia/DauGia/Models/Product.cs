@@ -9,14 +9,13 @@ namespace DauGia.Models
     {
         public int Id { get; set; }
         public string Name { get; set; }
-        public string Img { get; set; }
         public byte Type { get; set; }
         public int Quantity { get; set; }
         public System.DateTime TimeUpdate { get; set; }
         public byte Status { get; set; }
         public int UserId { get; set; }
         public bool Active { get; set; }
-
+        public List<ProductImage> ListImg { get; set; }
         //public virtual ProductStatus ProductStatu { get; set; }
         //public virtual ProductType ProductType { get; set; }
         //public virtual User User { get; set; }

@@ -6,12 +6,8 @@ using System.Web.Mvc;
 
 namespace DauGia.Controllers
 {
-    public class HomeController : BaseController
+    public class BaseController : Controller
     {
-        // GET: Home
-        public ActionResult Index()
-        {
-            return View();
-        }
+       
     }
 }
