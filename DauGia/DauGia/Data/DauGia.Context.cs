@@ -25,5 +25,12 @@ namespace DauGia.Data
             throw new UnintentionalCodeFirstException();
         }
     
+        public virtual DbSet<Producer> Producers { get; set; }
+        public virtual DbSet<Product> Products { get; set; }
+        public virtual DbSet<ProductDetail> ProductDetails { get; set; }
+        public virtual DbSet<ProductStatu> ProductStatus { get; set; }
+        public virtual DbSet<ProductType> ProductTypes { get; set; }
+        public virtual DbSet<Role> Roles { get; set; }
+        public virtual DbSet<User> Users { get; set; }
     }
 }
