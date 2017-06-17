@@ -18,5 +18,8 @@ namespace DauGia.Controllers
         {
             return View();
         }
+
+        //[HttpGet]
+        //public 
     }
 }
