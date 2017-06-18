@@ -105,6 +105,7 @@ namespace DauGia.Controllers
             return RedirectToAction("Index", "Home");
         }
         //
+        //
         //Get: /Account/profile
         [CheckLogin]
         public ActionResult Profile()
@@ -139,6 +140,44 @@ namespace DauGia.Controllers
                 }
             }
             return RedirectToAction("Index", "Home");
+        }
+        // thêm vào mục ưu thích
+        [HttpPost]
+        [CheckLogin]
+        public ActionResult AddWist(int productId)
+        {
+            using (DauGiaEntities ql = new DauGiaEntities())
+            {
+                User tk = CurrentContext.CurUser();
+                int ten = tk.Id;
+
+            }
+            return RedirectToAction("Index", "Home");
+        }
+        // xem danh sách mục ưu thích
+        [HttpGet]
+        [CheckLogin]
+        public ActionResult ListWist()
+        {
+            using (DauGiaEntities ql = new DauGiaEntities())
+            {
+                User tk = CurrentContext.CurUser();
+                int ten = tk.Id;
+
+            }
+            return View();
+        }
+        [CheckLogin]
+        // danh sách sản phẩm đang đấu giá
+        public ActionResult ReviewAuction()
+        {
+            return View();
+        }
+        [CheckLogin]
+        // sản phẩm mình thắng cuộc
+        public ActionResult ReviewWin()
+        {
+            return View();
         }
     }
 }
