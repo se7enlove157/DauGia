@@ -1,0 +1,47 @@
+﻿@using DauGia.Helper 
+@using DauGia.Data
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@model List<SanPham>
+<div class="section group">
+    @foreach (SanPham pm in Model)
+    {
+        <div class="grid_1_of_4 images_1_of_4">
+            <a href="@Url.Action("ProductDetail","Product",new {spid_x = pm.MaSanPham})"><img src="images/feature-pic1.jpg" alt="" /></a>
+            <h2>@pm.TenSanPham</h2>
+            <div class="price-details">
+                <div class="price-number">
+                    <p><span class="rupees">@string.Format("{0:N0},000 đ", pm.Gia)</span></p>
+                </div>
+                <div class="add-cart">
+                    <h4><a href="preview.html"></a></h4>
+                </div>
+                <div class="clear"></div>
+            </div>
+
+        </div>
+    }
+    @if (ViewBag.Pages != 1)
+    {
+        <div class="row">
+            <div class="col-sm-12">
+                <nav>
+                    <ul class="pagination">
+                        <li @if (ViewBag.curPage == 1) { <text> class="disabled hidden" </text>    }><a href="?curPage=@ViewBag.PrevPage" aria-label="Previous"><span aria-hidden="true">«</span></a></li>
+                        @for (int i = 1; i <= ViewBag.Pages; i++)
+                        {
+                            <li @if (i == ViewBag.curPage) { <text> class="active" </text>   }>
+                                <a href="?curPage=@i ">@i</a>
+                            </li>
+                        }
+                        <li @if (ViewBag.NextCuoi == ViewBag.curPage) { <text> class="disabled hidden" </text>    }><a href="?curPage=@ViewBag.NextPage" aria-label="Next"><span aria-hidden="true">»</span></a></li>
+                    </ul>
+
+                </nav>
+            </div>
+
+        </div>
+    }
+    </div>

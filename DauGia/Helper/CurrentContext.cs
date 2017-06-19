@@ -26,8 +26,8 @@ namespace DauGia.Helper
 
                 using (DauGiaEntities ql = new DauGiaEntities())
                 {
-                    User tk = ql.Users.
-                        Where(q => q.Username == username).
+                    NguoiDung tk = ql.NguoiDung.
+                        Where(q => q.TaiKhoan == username).
                         FirstOrDefault();
                     if (tk != null)
                     {
@@ -40,9 +40,9 @@ namespace DauGia.Helper
             }
             return false;
         }
-        public static User CurUser()
+        public static NguoiDung CurUser()
         {
-            return (User)HttpContext.Current.Session["CurUser"];
+            return (NguoiDung)HttpContext.Current.Session["CurUser"];
         }
         public static void Destroy()
         {

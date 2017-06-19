@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿@using DauGia.Helper;
+<!DOCTYPE html>
 <html>
 <head>
     @*<title>@ViewBag.Title - HomeShop</title>*@
@@ -10,7 +11,6 @@
     <script src="~/Content/js/easing.js"></script>
     <script src="~/Content/js/move-top.js"></script>
     <script src="~/Content/js/startstop-slider.js"></script>
-
     @Styles.Render("~/Content/css")
     @*@Scripts.Render("~/bundles/modernizr")*@
     <style>
@@ -20,46 +20,25 @@
     </style>
 </head>
 <body>
-    @*<div class="navbar navbar-inverse navbar-fixed-top">
-            <div class="container">
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                    @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
-                </div>
-                <div class="navbar-collapse collapse">
-                    <ul class="nav navbar-nav">
-                        <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                        <li>@Html.ActionLink("About", "About", "Home")</li>
-                        <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
-                    </ul>
-                    @Html.Partial("_LoginPartial")
-                </div>
-            </div>
-        </div>*@
-    @*<div class="container body-content">
-            @RenderBody()
-            <hr />
-            <footer>
-                <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
-            </footer>
-        </div>*@
     <div class="wrap">
         <div class="header">
             <div class="headertop_desc">
-                <div class="call">
-                    <p><span>Need help?</span> call us <span class="number">1-22-3456789</span></p>
-                </div>
                 <div class="account_desc">
                     <ul>
-                        <li><a href="#">Register</a></li>
-                        <li><a href="#">Login</a></li>
-                        <li><a href="#">Delivery</a></li>
-                        <li><a href="#">Checkout</a></li>
-                        <li><a href="#">My Account</a></li>
+                        <form id="form_logout" method="post" action="@Url.Action("LogOut", "Account")"></form>
+                        @if (DauGia.Helper.CurrentContext.IsLogged() == false)
+                        {
+                            <li><a href="@Url.Action("Register","Account")">Đăng Ký</a></li>
+                            <li><a href="@Url.Action("Login","Account")">Đăng Nhập</a></li>
+                        }
+                        else
+                        {
+                            DauGia.Models.NguoiDungModel CurUser = Session["CurUser"] as DauGia.Models.NguoiDungModel;
+                            <li><a href="@Url.Action("Profile","Account")">@CurrentContext.CurUser().TaiKhoan</a></li>
+                            <li><a href="@Url.Action("ReviewWist","Manager")">Sản phẩm ưu thích</a></li>
+                            <li><a href="@Url.Action("ReviewAuction","Manager")">Danh sách đấu giá</a></li>
+                            <li><a id="loginLink" href="javascript: ;">Thoát</a></li>
+                        }
                     </ul>
                 </div>
                 <div class="clear"></div>
@@ -67,14 +46,6 @@
             <div class="header_top">
                 <div class="logo">
                     <a href="index.html"><img src="~/Content/images/logo.png" /></a>
-                </div>
-                <div class="cart">
-                    <p>Welcome to our Online Store! <span>Cart:</span></p><div id="dd" class="wrapper-dropdown-2">
-                        0 item(s) - $0.00
-                        <ul class="dropdown">
-                            <li>you have no items in your Shopping cart</li>
-                        </ul>
-                    </div><p></p>
                 </div>
                 <script type="text/javascript">
                     function DropDown(el) {
@@ -102,18 +73,16 @@
                         });
 
                     });
-
                 </script>
                 <div class="clear"></div>
             </div>
             <div class="header_bottom">
                 <div class="menu">
                     <ul>
-                        <li class="active"><a href="index.html">Home</a></li>
-                        <li><a href="about.html">About</a></li>
-                        <li><a href="delivery.html">Delivery</a></li>
-                        <li><a href="news.html">News</a></li>
-                        <li><a href="contact.html">Contact</a></li>
+                        <li class="active"><a href="@Url.Action("Index","Home")">Trang chủ</a></li>
+                        <li><a href="@Url.Action("Index","Product")">San phẩm</a></li>
+                        <li><a href="javascript:;">Tin tức</a></li>
+                        <li><a href="javascript:;">Liên Hệ</a></li>
                         <div class="clear"></div>
                     </ul>
                 </div>
@@ -124,86 +93,12 @@
                 </div>
                 <div class="clear"></div>
             </div>
-            @*<div class="header_slide">
-                    <div class="header_bottom_left">
-                        <div class="categories">
-                            <ul>
-                                <h3>Categories</h3>
-                                <li><a href="#">Mobile Phones</a></li>
-                                <li><a href="#">Desktop</a></li>
-                                <li><a href="#">Laptop</a></li>
-                                <li><a href="#">Accessories</a></li>
-                                <li><a href="#">Software</a></li>
-                                <li><a href="#">Sports &amp; Fitness</a></li>
-                                <li><a href="#">Footwear</a></li>
-                                <li><a href="#">Jewellery</a></li>
-                                <li><a href="#">Clothing</a></li>
-                                <li><a href="#">Home Decor &amp; Kitchen</a></li>
-                                <li><a href="#">Beauty &amp; Healthcare</a></li>
-                                <li><a href="#">Toys, Kids &amp; Babies</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="header_bottom_right">
-                        <div class="slider">
-                            <div id="slider">
-                                <div id="mover" style="width: 2829px; left: -1886px;">
-                                    <div id="slide-1" class="slide">
-                                        <div class="slider-img">
-                                            <a href="preview.html"><img src="~/Content/images/slide-1-image.png" alt="learn more" style="top: 20px;" /></a>
-                                        </div>
-                                        <div class="slider-text">
-                                            <h1>Clearance<br><span>SALE</span></h1>
-                                            <h2>UPTo 20% OFF</h2>
-                                            <div class="features_list">
-                                                <h4>Get to Know More About Our Memorable Services Lorem Ipsum is simply dummy text</h4>
-                                            </div>
-                                            <a href="preview.html" class="button">Shop Now</a>
-                                        </div>
-                                        <div class="clear"></div>
-                                    </div>
-                                    <div class="slide">
-                                        <div class="slider-text">
-                                            <h1>Clearance<br><span>SALE</span></h1>
-                                            <h2>UPTo 40% OFF</h2>
-                                            <div class="features_list">
-                                                <h4>Get to Know More About Our Memorable Services</h4>
-                                            </div>
-                                            <a href="preview.html" class="button">Shop Now</a>
-                                        </div>
-                                        <div class="slider-img">
-                                            <a href="preview.html"><img src="~/Content/images/slide-3-image.jpg" alt="learn more" style="top: 20px;" /></a>
-                                        </div>
-                                        <div class="clear"></div>
-                                    </div>
-                                    <div class="slide">
-                                        <div class="slider-img">
-                                            <a href="preview.html"><img src="~/Content/images/slide-2-image.jpg" alt="learn more" style="top: 20px;" /></a>
-                                        </div>
-                                        <div class="slider-text">
-                                            <h1>Clearance<br><span>SALE</span></h1>
-                                            <h2>UPTo 10% OFF</h2>
-                                            <div class="features_list">
-                                                <h4>Get to Know More About Our Memorable Services Lorem Ipsum is simply dummy text</h4>
-                                            </div>
-                                            <a href="preview.html" class="button">Shop Now</a>
-                                        </div>
-                                        <div class="clear"></div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="clear"></div>
-                        </div>
-                    </div>
-                    <div class="clear"></div>
-                </div>*@
         </div>
         <div class="main">
             <div class="content">
                 @RenderBody()
             </div>
         </div>
-
     </div>
     <div class="footer">
         <div class="wrap">
@@ -272,5 +167,12 @@
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#loginLink").on('click', function () {
+                $("#form_logout").submit();
+            });
+        });
+    </script>
 </body>
 </html>

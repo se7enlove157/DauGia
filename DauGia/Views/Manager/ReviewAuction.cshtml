@@ -1,0 +1,36 @@
+﻿@using DauGia.Data;
+@{
+    ViewBag.Title = "ReviewAuction";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@model List<DauGiaSanPham>
+<table class="table ">
+    <thead class="text-center ">
+        <tr>
+            <th>
+                Mã sản phâm
+            </th>
+            <th>
+                Tên sản phẩm
+            </th>
+            <th>
+                Giá sản phẩm
+            </th>
+            <th>Người dùng đấu giá</th>
+            <th>Giá người dùng</th>
+        </tr>
+    </thead>
+    <tbody class="text-center ">
+        @foreach (DauGiaSanPham dd in Model)
+        {
+            <tr>
+                <td>@dd.SanPham.MaSanPham</td>
+                <td>@dd.SanPham.TenSanPham</td>
+                <td>@dd.SanPham.Gia</td>
+                <td>@dd.DauGiaNguoiDung</td>
+                <td>@dd.NguoiDung.TaiKhoan</td>
+            </tr>
+        }
+    </tbody>
+</table>
+

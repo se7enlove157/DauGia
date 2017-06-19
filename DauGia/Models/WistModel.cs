@@ -8,6 +8,5 @@ namespace DauGia.Models
     public class WistModel
     {
         public int IdProduct { get; set; }
-        public int IdUser { get; set; }
     }
 }

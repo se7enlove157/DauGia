@@ -6,19 +6,17 @@ namespace DauGia.Models
 {
     public class ProductModel
     {
-        public int Id { get; set; }
-        public string Name { get; set; }
-        public string Img { get; set; }
-        public byte Type { get; set; }
-        public int Quantity { get; set; }
-        public DateTime TimeUpdate { get; set; }
-        public byte Status { get; set; }
-        public int UserId { get; set; }
-        public bool Active { get; set; }
-
-        //public virtual ProductStatus ProductStatu { get; set; }
-        //public virtual ProductType ProductType { get; set; }
-        //public virtual User User { get; set; }
-        //public virtual ProductDetail ProductDetail { get; set; }
+        public int Masp { get; set; }
+        public string TenSanPham { get; set; }
+        public string Hinh1 { get; set; }
+        public string Hinh2 { get; set; }
+        public string Hinh3 { get; set; }
+        public int MaTL { get; set; }
+        public double Gia { get; set; }
+        public int MaNguoiDung { get; set; }
+        public DateTime NgayBatDau { get; set; }
+        public DateTime NgayKetThuc { get; set; }
+        public double BuocGia { get; set; }
+        public double GiaMuaNgay { get; set; }
     }
 }

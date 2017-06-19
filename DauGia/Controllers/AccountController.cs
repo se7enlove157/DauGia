@@ -17,6 +17,10 @@ namespace DauGia.Controllers
         {
             return View();
         }
+        public ActionResult Login()
+        {
+            return View();
+        }
         // Post/Accout/Login
         [HttpPost]
         public ActionResult Login(LoginModel model)
@@ -24,8 +28,8 @@ namespace DauGia.Controllers
             using (DauGiaEntities ql = new DauGiaEntities())
             {
                 string encPW = StringUtils.Md5(model.Mk);
-                User tk = ql.Users.
-                    Where(u => u.Username == model.TenDN && u.Password == encPW)
+                NguoiDung tk = ql.NguoiDung.
+                    Where(u => u.TaiKhoan == model.TenDN && u.MatKhau == encPW)
                     .FirstOrDefault();
                 if (tk == null)
                 {
@@ -39,14 +43,14 @@ namespace DauGia.Controllers
                     if (model.Remember)// khi đã đăng nhập
                     {
 
-                        Response.Cookies["UserName"].Value = tk.Username;
+                        Response.Cookies["UserName"].Value = tk.TenNguoiDung;
                         Response.Cookies["UserName"].Expires = DateTime.Now.AddDays(1);
                     }
-                    if (tk.RoleId == 1)
+                    if (tk.PhanQuyen == 1) // tài khoản thường
                     {
-                        return RedirectToAction("Index", "HomeAD");
+                        return RedirectToAction("Index", "Home");
                     }
-                    else
+                    else // He thống
                     {
                         return RedirectToAction("Index", "Home");
                     }
@@ -70,8 +74,8 @@ namespace DauGia.Controllers
             }
             using (DauGiaEntities ql = new DauGiaEntities())
             {
-                int n = ql.Users
-                    .Where(us => us.Username == model.Ten)
+                int n = ql.NguoiDung
+                    .Where(us => us.TaiKhoan == model.Ten)
                     .Count();
                 if (n == 1)
                 {
@@ -80,17 +84,18 @@ namespace DauGia.Controllers
                 }
             }
             ViewBag.TenDangNhap = model.Ten;
-            User tk = new User
+            NguoiDung tk = new NguoiDung
             {
-                Username = model.Ten,
-                Password = StringUtils.Md5(model.MK),
+                TaiKhoan = model.Ten,
+                MatKhau = StringUtils.Md5(model.MK),
                 Email = model.Email,
-               // HoTen = model.FullName,
+                TenNguoiDung = model.FullName,
+                PhanQuyen = 1,// user nguoi dung
             };
             using (DauGiaEntities ctx = new DauGiaEntities())
             {
 
-                ctx.Users.Add(tk);
+                ctx.NguoiDung.Add(tk);
                 ctx.SaveChanges();
                 ModelState.Clear();
             }
@@ -102,82 +107,46 @@ namespace DauGia.Controllers
         public ActionResult LogOut()
         {
             CurrentContext.Destroy();
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Login", "Account");
         }
-        //
-        //
-        //Get: /Account/profile
+        // trang cá nhân
         [CheckLogin]
         public ActionResult Profile()
         {
             using (DauGiaEntities ql = new DauGiaEntities())
             {
-                User tk = CurrentContext.CurUser();
-                string ten = tk.Username;
-                var model = ql.Users.Where(p => p.Username == ten).FirstOrDefault();
+                NguoiDung tk = CurrentContext.CurUser();
+                string ten = tk.TaiKhoan;
+                var model = ql.NguoiDung.Where(p => p.TaiKhoan == ten).FirstOrDefault();
                 return View(model);
             }
         }
+        //
+        //Get: /Account/profilepass
+        [CheckLogin]
         [HttpPost]
-        public ActionResult UpdateUser(UserUpdateModel userUpdate)
+        public ActionResult profilepass(Profile pr)
         {
-            string message = "";
             using (DauGiaEntities ql = new DauGiaEntities())
             {
-                User tk = CurrentContext.CurUser();
-                string encPW = StringUtils.Md5(userUpdate.PasswordOld);
-                if (tk.Password == encPW)
+                string encPW = StringUtils.Md5(pr.Oldpass);
+                NguoiDung tk = ql.NguoiDung.Where(p => p.MaNguoiDung == pr.MaTK).FirstOrDefault();
+                if (tk.MatKhau == encPW)
                 {
-                    tk.Password = StringUtils.Md5(userUpdate.PasswordNew).ToString();
-                    tk.Email = userUpdate.Email.ToString();
-                    tk.Adress = userUpdate.Address.ToString();
+                    tk.MatKhau = StringUtils.Md5(pr.NewPass).ToString();
+                    tk.Email = pr.EmailNew;
+                    tk.TenNguoiDung = pr.NameNew;
                     ql.SaveChanges();
-                    message = "Cập nhật thành công !";
+                    return RedirectToAction("Index", "Home");
                 }
                 else
                 {
-                    message = "Cập cập thất bại!";
+                    ViewBag.Error = "Cập nhật thất bại!";
+                    return View(tk);
                 }
             }
-            return RedirectToAction("Index", "Home");
         }
-        // thêm vào mục ưu thích
-        [HttpPost]
-        [CheckLogin]
-        public ActionResult AddWist(int productId)
-        {
-            using (DauGiaEntities ql = new DauGiaEntities())
-            {
-                User tk = CurrentContext.CurUser();
-                int ten = tk.Id;
+        //
 
-            }
-            return RedirectToAction("Index", "Home");
-        }
-        // xem danh sách mục ưu thích
-        [HttpGet]
-        [CheckLogin]
-        public ActionResult ListWist()
-        {
-            using (DauGiaEntities ql = new DauGiaEntities())
-            {
-                User tk = CurrentContext.CurUser();
-                int ten = tk.Id;
-
-            }
-            return View();
-        }
-        [CheckLogin]
-        // danh sách sản phẩm đang đấu giá
-        public ActionResult ReviewAuction()
-        {
-            return View();
-        }
-        [CheckLogin]
-        // sản phẩm mình thắng cuộc
-        public ActionResult ReviewWin()
-        {
-            return View();
-        }
     }
 }

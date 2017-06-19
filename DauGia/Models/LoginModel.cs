@@ -10,6 +10,5 @@ namespace DauGia.Models
         public string TenDN { get; set; }
         public string Mk { get; set; }
         public bool Remember { get; set; }
-        public int level { get; set; }
     }
 }

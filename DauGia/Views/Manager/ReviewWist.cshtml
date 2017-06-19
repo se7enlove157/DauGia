@@ -1,0 +1,31 @@
+﻿@using DauGia.Data
+@{
+    ViewBag.Title = "ReviewWist";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@model List<UuThich>
+<table class="table ">
+    <thead class="text-center ">
+        <tr>
+            <th>
+                Mã sản phâm
+            </th>
+            <th>
+                Tên sản phẩm
+            </th>
+            <th>
+                Giá
+            </th>
+        </tr>
+    </thead>
+    <tbody class="text-center ">
+        @foreach (UuThich uu in Model)
+        {
+            <tr>
+                <td>@uu.SanPham.MaSanPham</td>
+                <td>@uu.SanPham.TenSanPham</td>
+                <td>@uu.SanPham.Gia</td>
+            </tr>
+        }
+    </tbody>
+</table>
