@@ -246,6 +246,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Helper\CurrentContext.cs" />
+    <Compile Include="Helper\MailHelper.cs" />
     <Compile Include="Helper\StringUtils.cs" />
     <Compile Include="Models\AuctionModel.cs" />
     <Compile Include="Models\LoginModel.cs" />
@@ -446,6 +447,7 @@
     <Content Include="Content\js\script.js" />
     <Content Include="Content\js\slides.min.jquery.js" />
     <Content Include="Content\js\startstop-slider.js" />
+    <Content Include="Content\teamplate\sendmail.html" />
     <Content Include="Data\DauGia.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>DauGia.edmx</DependentUpon>
@@ -489,7 +491,9 @@
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\_references.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -519,6 +523,7 @@
     <Content Include="Views\Product\FromCreate.cshtml" />
     <Content Include="Views\Manager\ReviewWist.cshtml" />
     <Content Include="Views\Manager\ReviewAuction.cshtml" />
+    <Content Include="Views\Product\Search.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

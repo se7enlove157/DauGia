@@ -7,6 +7,8 @@ using DauGia.Data;
 using DauGia.Helper;
 using DauGia.Models;
 using DauGia.Fitters;
+using System.Net;
+using Newtonsoft.Json.Linq;
 
 namespace DauGia.Controllers
 {
@@ -64,12 +66,22 @@ namespace DauGia.Controllers
         }
         // Post: /Account/Register
         [HttpPost]
-       // [CaptchaValidation("CaptchaCode", "ExampleCaptcha")]
         public ActionResult Register(RegisterModel model)
         {
-            if (ModelState.IsValid == false)
+            var response = Request["g-recaptcha-response"];
+            string secretKey = "6LflPiYUAAAAAIcMNAK2MQWg1BsYqvunpJiSQJ8N";
+            var client = new WebClient();
+            var result = client.DownloadString(string.Format("https://www.google.com/recaptcha/api/siteverify?secret={0}&response={1}", secretKey, response));
+            var obj = JObject.Parse(result);
+            var status = (bool)obj.SelectToken("success");
+            if(ModelState.IsValid == false)
             {
-                ViewBag.Error = "Error Captcha";
+                ViewBag.Error = "Xin nhập thông tin.";
+                return View(model);
+            }
+            if (status == false)
+            {
+                ViewBag.Error = "ReCaptcha chưa được thực hiện.";
                 return View(model);
             }
             using (DauGiaEntities ql = new DauGiaEntities())

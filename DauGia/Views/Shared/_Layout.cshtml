@@ -87,8 +87,8 @@
                     </ul>
                 </div>
                 <div class="search_box">
-                    <form>
-                        <input type="text" value="Search" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Search';}"><input type="submit" value="">
+                    <form id="form_search" method="post" action="@Url.Action("Search", "Product")">
+                        <input type="text" value="" name="search" placeholder="Bạn cần tìm..."><input type="submit" value="" id="subsearch">
                     </form>
                 </div>
                 <div class="clear"></div>
@@ -171,6 +171,11 @@
         $(document).ready(function () {
             $("#loginLink").on('click', function () {
                 $("#form_logout").submit();
+            });
+        });
+        $(document).ready(function () {
+            $("#subsearch").on('click', function () {
+                $("#form_search").submit();
             });
         });
     </script>
